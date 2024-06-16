@@ -1,0 +1,3 @@
+/home/theany/Belgeler/CPP/calculator/build/CMakeFiles/Calculator.dir
+/home/theany/Belgeler/CPP/calculator/build/CMakeFiles/edit_cache.dir
+/home/theany/Belgeler/CPP/calculator/build/CMakeFiles/rebuild_cache.dir
