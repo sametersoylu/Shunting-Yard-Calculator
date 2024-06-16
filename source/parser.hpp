@@ -21,7 +21,10 @@ namespace shunting_yard {
             std::string output{}; 
             for(std::string bit{}; std::getline(inp, bit, '#');) {
                 auto might_be_op = *bit.begin();
-                if(not is_operator(might_be_op)) { output += bit + "#"; continue; }
+                if(not is_operator(might_be_op) and might_be_op != '(' and might_be_op != ')') { 
+                    output += bit + "#"; 
+                    continue; 
+                }
                 
                 if(might_be_op == '(') { operators.push(might_be_op); continue; }
                 
@@ -88,7 +91,12 @@ namespace shunting_yard {
                     last_was_operand = true; 
                 });
                 if(is_numerical(ch)) { aux += ch; continue; }
-                if(is_operator(ch)) { tokenized += std::string{ch} + "#"; last_was_operand = false; continue; }
+                if(is_operator(ch) or ch == '(' or ch == ')') {
+                    if(not aux.empty()) { tokenized += aux + "#"; aux.clear(); }
+                    tokenized += std::string{ch} + "#"; 
+                    last_was_operand = false; 
+                    continue; 
+                }
                 if(not is_numerical(ch) and not is_operator(ch) and ch != ' ') { throw std::invalid_argument("The value you entered is not supported as an operand or an operator!"); }
             }
             if(not aux.empty()) {
