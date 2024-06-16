@@ -64,7 +64,7 @@ namespace shunting_yard {
             }; 
         }
         bool is_numerical(char ch) {
-            return '0' < ch and ch < '9'; 
+            return ('0' <= ch and ch <= '9') or ch == '.'; 
         } 
         
         bool is_operator(char op) { 
